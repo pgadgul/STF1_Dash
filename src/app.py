@@ -21,7 +21,11 @@ app = dash.Dash(__name__, server=server)
 
 
 # Put your Dash code here
-
+app.layout = html.Div([
+            html.H1(children="Hello world!",className="hello",
+    style={'color':'#00361c','text-align':'center'
+          })
+      ])
 
 # Run the Dash app
 if __name__ == '__main__':
