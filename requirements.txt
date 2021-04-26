@@ -5,4 +5,4 @@ gunicorn
 dash-renderer
 dash-html-components 
 dash-core-components
-plotly
+plotly== 3.10
