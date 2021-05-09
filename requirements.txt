@@ -6,3 +6,9 @@ dash-renderer
 dash-html-components 
 dash-core-components
 plotly== 3.10
+pandas
+numpy
+glob
+calender
+tkinter
+datetime
