@@ -8,4 +8,3 @@ dash-core-components
 plotly== 3.10
 pandas
 numpy
-tkinter
