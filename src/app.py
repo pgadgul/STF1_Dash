@@ -14,7 +14,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 # Import data
-data_path = os.path.join("../data", "2019-01-29_SEN_Hk_tlm_t.csv")
+data_path = os.path.join("../data", "export_dataframe.csv")
 data = pd.read_csv(data_path)
 # Setup the app
 # Make sure not to change this file name or the variable names below,
@@ -44,15 +44,15 @@ app.layout = html.Div(
                 {'label': 'Gyrometer Y axis', 'value': 'GYRO_1'},
                 {'label': 'Gyrometer Z axis', 'value': 'GYRO_2'},
             ],
-            value='TEMP0'
+            value='TEMP_0'
         ),
-        html.Div(id='dd-output-container'),
+        html.Div(
+            id='dd-output-container',
+        ),
         dcc.Graph(
-
             figure={
                 "data": [
                     {
-
                         "x": data["CCSDS_SECONDS"],
                         "y": data["MAG_0"],
                         "type": "lines",
@@ -81,8 +81,21 @@ app.layout = html.Div(
     dash.dependencies.Output('dd-output-container', 'children'),
     [dash.dependencies.Input('demo-dropdown', 'value')])
 def update_output(value):
-    return 'You have selected "{}"'.format(value)
-
+    return [
+        'You have selected "{}"'.format(value),
+        dcc.Graph(
+                    figure={
+                        "data": [
+                            {
+                                "x": data["CCSDS_SECONDS"],
+                                "y": data[value],
+                                "type": "lines",
+                            },
+                        ],
+                        "layout": {"title": value, },
+                    },
+                ),
+]
 # Run the Dash app
 if __name__ == '__main__':
     app.server.run(debug=True, threaded=True)
