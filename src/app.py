@@ -14,8 +14,8 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 # Import data
-data_path = os.path.join("../data", "export_dataframe.csv")
-data = pd.read_csv(data_path)
+#data_path = os.path.join("../data", "export_dataframe.csv")
+data = pd.read_csv("export_dataframe.csv")
 # Setup the app
 # Make sure not to change this file name or the variable names below,
 # the template is configured to execute 'server' on 'app.py'

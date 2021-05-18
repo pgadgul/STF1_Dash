@@ -1,7 +1,11 @@
-# test_with_unittest.py
+# content of test_module.py
+import pytest
 
-from unittest import TestCase
 
-class TryTesting(TestCase):
-    def test_always_passes(self):
-        self.assertTrue(True)
+def test_func_fast():
+    pass
+
+
+@pytest.mark.slow
+def test_func_slow():
+    pass
