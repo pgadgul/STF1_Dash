@@ -2,20 +2,16 @@
 import os
 from random import randint
 
-import plotly.plotly as py
-from plotly.graph_objs import *
-import pandas as pd
-import numpy as np
-import flask
 import dash
-
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output
+import flask
+import pandas as pd
 
 # Import data
 #data_path = os.path.join("../data", "export_dataframe.csv")
 data = pd.read_csv("export_dataframe.csv")
+
 # Setup the app
 # Make sure not to change this file name or the variable names below,
 # the template is configured to execute 'server' on 'app.py'
@@ -27,12 +23,12 @@ app = dash.Dash(__name__, server=server)
 # Put your Dash code here
 app.layout = html.Div(
     children=[
-        html.H1(children="STF1 Data Analysis",),
+        html.H1(children="STF1 Data Analysis", className="header-title"),
         html.P(
             children="Analyze the behavior of STF1 sensor reading while orbiting around earth"
-            " There are Temperature,Gyro and Magnetometer readings available ",
+            " There are Temperature,Gyro and Magnetometer readings available ", className="header-description",
         ),
-        dcc.Dropdown(
+            dcc.Dropdown(
             id='demo-dropdown',
             options=[
                 {'label': 'Temprature X axis', 'value': 'TEMP_0'},
@@ -75,6 +71,7 @@ app.layout = html.Div(
         ),
     ]
 )
+
 
 # Add  callback
 @app.callback(
