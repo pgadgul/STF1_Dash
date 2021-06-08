@@ -95,4 +95,4 @@ def update_output(value):
 ]
 # Run the Dash app
 if __name__ == '__main__':
-    app.server.run(debug=True, threaded=True)
+    app.server.run(host='0.0.0.0', port=8050, debug=True)
