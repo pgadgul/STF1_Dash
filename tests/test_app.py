@@ -1,30 +1,11 @@
-# 1. imports of your dash app
-import dash
-import dash_html_components as html
+from pytest_dash.wait_for import wait_for_text_to_equal
 
+def test_subprocess(dash_subprocess):
+    driver = dash_subprocess.driver
+    dash_subprocess('test_apps.simple_app')
 
-# 2. give each testcase a tcid, and pass the fixture
-# as a function argument, less boilerplate
-def test_bsly001_falsy_child(dash_duo):
+    value_input = driver.find_element_by_id('value')
+    value_input.clear()
+    value_input.send_keys('Hello dash subprocess')
 
-    # 3. define your app inside the test function
-    app = dash.Dash(__name__)
-    app.layout = html.Div(id="nully-wrapper", children=0)
-
-    # 4. host the app locally in a thread, all dash server configs could be
-    # passed after the first app argument
-    dash_duo.start_server(app)
-
-    # 5. use wait_for_* if your target element is the result of a callback,
-    # keep in mind even the initial rendering can trigger callbacks
-    dash_duo.wait_for_text_to_equal("#nully-wrapper", "0", timeout=4)
-
-    # 6. use this form if its present is expected at the action point
-    assert dash_duo.find_element("#nully-wrapper").text == "0"
-
-    # 7. to make the checkpoint more readable, you can describe the
-    # acceptance criterion as an assert message after the comma.
-    assert dash_duo.get_logs() == [], "browser console should contain no error"
-
-    # 8. visual testing with percy snapshot
-    dash_duo.percy_snapshot("bsly001-layout")
+    wait_for_text_to_equal(driver, '#out', 'Hello dash subprocess')
