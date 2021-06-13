@@ -1,6 +1,5 @@
 flask
 pytest
-pytest-dash
 dash
 gunicorn
 dash-renderer
@@ -10,3 +9,5 @@ plotly== 3.10
 pandas
 numpy
 npm
+dash[testing]
+pytest-webdriver

@@ -1,11 +1,7 @@
-from pytest_dash.wait_for import wait_for_text_to_equal
+from dash.testing.application_runners import import_app
 
-def test_subprocess(dash_subprocess):
-    driver = dash_subprocess.driver
-    dash_subprocess('test_apps.simple_app')
 
-    value_input = driver.find_element_by_id('value')
-    value_input.clear()
-    value_input.send_keys('Hello dash subprocess')
-
-    wait_for_text_to_equal(driver, '#out', 'Hello dash subprocess')
+def test_one(dash_duo):
+    app = import_app("dash_test.app")
+    dash_duo.start_server(app)
+    dash_duo.wait_for_text_to_equal("h1", "STF1 Data Analysis", timeout=4)
