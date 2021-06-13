@@ -11,3 +11,4 @@ numpy
 npm
 dash[testing]
 pytest-webdriver
+chromedriver-binary
