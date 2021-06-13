@@ -35,3 +35,9 @@ jobs:
       run: |
         export PYTHONPATH=src
         pytest
+    - name: Run TestCafe
+      # You may pin to the exact commit or the version.
+      # uses: DevExpress/testcafe-action@c55c03590ea83916222c1b5c7fb807408c4570d6
+      uses: DevExpress/testcafe-action@latest
+      with:
+        args: "chrome tests"
