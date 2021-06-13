@@ -1,5 +1,6 @@
 flask
 pytest
+pytest-dash
 dash
 gunicorn
 dash-renderer
