@@ -1,12 +1,11 @@
-import { Selector } from "testcafe";
+import { Selector } from 'testcafe'; // first import testcafe selectors
+fixture `Getting Started`// declare the fixture
+    .page `https://devexpress.github.io/testcafe/example`;  // specify the start page
+//then create a test and place your code there
+test('My first test', async t => {
+        .typeText('#developer-name', 'John Smith')
+        .click('#submit-button')
 
-fixture("Airport Gap Home Page").page(
-  "https://airportgap-staging.dev-tester.com/"
-);
-
-test("Verify home page loads properly", async t => {
-  const subtitle = Selector("h1").withText(
-    "An API to fetch and save information about your favorite airports"
-  );
-  await t.expect(subtitle.exists).ok();
-});
+        // Use the assertion to check if the actual header text is equal to the expected one
+        .expect(Selector('#article-header').innerText).eql('Thank you, John Smith!');
+}
