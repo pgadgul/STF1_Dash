@@ -10,8 +10,8 @@ import pandas as pd
 
 # Import data
 
-data_path = os.path.join("../data", "export_dataframe.csv")
-data = pd.read_csv(data_path)
+#data_path = os.path.join("../data", "export_dataframe.csv")
+data = pd.read_csv('export_dataframe.csv')
 
 # Setup the app
 # Make sure not to change this file name or the variable names below,
@@ -96,4 +96,4 @@ def update_output(value):
 ]
 # Run the Dash app
 if __name__ == '__main__':
-    app.server.run(debug=True,  port=8050)
+    app.server.run(host='0.0.0.0',debug=True, port=8050)
