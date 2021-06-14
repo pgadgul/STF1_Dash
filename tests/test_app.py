@@ -1,33 +1,10 @@
-import dash
-import dash_html_components as html
-from dash.testing.application_runners import import_app
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-chrome_options = Options()
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--headless")
-driver = webdriver.Chrome(options=chrome_options)
+import pytest
 
-def test_bsly001_falsy_child(dash_duo):
 
-    # 3. define your app inside the test function
-    app = import_app("src.app")
-    dash_duo.start_server(app)
+def test_func_fast():
+    pass
 
-    app.layout = html.Div(id="nully-wrapper", children=0)
 
-    # 4. host the app locally in a thread, all dash server configs could be
-    # passed after the first app argument
-    dash_duo.start_server(app)
-
-    # 5. use wait_for_* if your target element is the result of a callback,
-    # keep in mind even the initial rendering can trigger callbacks
-    dash_duo.wait_for_text_to_equal("#nully-wrapper", "0", timeout=4)
-
-    # 6. use this form if its present is expected at the action point
-    assert dash_duo.find_element("#nully-wrapper").text == "0"
-
-    # 7. to make the checkpoint more readable, you can describe the
-    # acceptance criterion as an assert message after the comma.
-    assert dash_duo.get_logs() == [], "browser console should contain no error"
-
+@pytest.mark.slow
+def test_func_slow():
+    pass
