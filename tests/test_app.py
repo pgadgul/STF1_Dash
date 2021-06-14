@@ -1,17 +1,19 @@
 import dash
 import dash_html_components as html
+from dash.testing.application_runners import import_app
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 chrome_options = Options()
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--headless")
 driver = webdriver.Chrome(options=chrome_options)
-driver.get('http://example.com')
 
 def test_bsly001_falsy_child(dash_duo):
 
     # 3. define your app inside the test function
-    app = dash.Dash(__name__)
+    app = import_app("src.app")
+    dash_duo.start_server(app)
+
     app.layout = html.Div(id="nully-wrapper", children=0)
 
     # 4. host the app locally in a thread, all dash server configs could be

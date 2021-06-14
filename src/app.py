@@ -9,8 +9,9 @@ import flask
 import pandas as pd
 
 # Import data
-#data_path = os.path.join("../data", "export_dataframe.csv")
-data = pd.read_csv("export_dataframe.csv")
+
+data_path = os.path.join("../data", "export_dataframe.csv")
+data = pd.read_csv(data_path)
 
 # Setup the app
 # Make sure not to change this file name or the variable names below,
